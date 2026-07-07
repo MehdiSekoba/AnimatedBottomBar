@@ -28,8 +28,14 @@ AnimatedBottomBar provides a polished navigation experience where the selected i
 Add the dependency to your app module:
 
 ```kotlin
+[versions]
+animatedbottombar = "1.0.0"
+
+[libraries]
+animatedbottombar = { module = "io.github.mehdisekoba:animatedbottombar", version.ref = "animatedbottombar" }
+
 dependencies {
-    implementation("io.github.mehdisekoba:animatedbottombar:1.0.0")
+    implementation(libs.animatedbottombar)
 }
 ```
 
