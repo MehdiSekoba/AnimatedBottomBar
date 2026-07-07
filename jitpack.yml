@@ -1,0 +1,10 @@
+#
+# JitPack build configuration.
+#
+# JitPack builds against a JDK selected here; the project targets JVM 17.
+jdk:
+  - openjdk17
+before_install:
+  - ./gradlew --version
+install:
+  - ./gradlew :animatedbottombar:publishToMavenLocal -x signMavenPublication --no-daemon
