@@ -22,3 +22,8 @@ secret-key.asc
 
 # Logs
 *.log
+
+private.key
+*.gpg
+*.asc
+secring.gpg
