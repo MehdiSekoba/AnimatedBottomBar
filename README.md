@@ -1,34 +1,43 @@
-```markdown
 # AnimatedBottomBar
 
-A modern Jetpack Compose bottom navigation bar with a **smooth floating curved indicator** that glides between tabs. The selected icon lifts, changes color, and rides the pill for a delightful feel.
+A modern and highly customizable **Jetpack Compose bottom navigation bar** with a smooth floating curved indicator animation.
+
+AnimatedBottomBar provides a polished navigation experience where the selected item smoothly transitions, the icon animates, and the indicator glides between destinations with a fluid motion.
 
 <p align="center">
   <img src="ui.gif" width="420" alt="AnimatedBottomBar demo" />
 </p>
 
-**Features**
+## ✨ Features
 
-- Elegant liquid curved indicator with Bézier curves
-- Fully customizable (colors, typography, sizes, animations)
-- Dot & count badges
-- Excellent accessibility support
-- Lightweight & zero extra dependencies
-- min SDK 24
+* Smooth floating curved indicator animation
+* Bézier-based liquid indicator shape
+* Animated icon transitions
+* Fully customizable colors, dimensions, and animation specs
+* Support for selected and unselected icons
+* Dot and count badges
+* Material 3 compatible
+* Accessibility-friendly semantics
+* Lightweight implementation
+* No unnecessary dependencies
 
 ---
 
-## Installation
+## 📦 Installation
+
+Add the dependency to your app module:
 
 ```kotlin
 dependencies {
-    implementation("io.github.mehdisekoba.animatedbottombar:animatedbottombar:1.0.0")
+    implementation("io.github.mehdisekoba:animatedbottombar:1.0.0")
 }
 ```
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
+
+Create your bottom bar items:
 
 ```kotlin
 val items = listOf(
@@ -54,60 +63,123 @@ val items = listOf(
         selectedIcon = IconSource.Vector(Icons.Filled.Folder)
     )
 )
+```
 
-var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
+Use `AnimatedBottomBar` inside your Composable:
+
+```kotlin
+var selectedIndex by rememberSaveable {
+    mutableIntStateOf(0)
+}
 
 AnimatedBottomBar(
     items = items,
     selectedIndex = selectedIndex,
-    onItemSelected = { selectedIndex = it },
-    modifier = Modifier.fillMaxWidth().padding(20.dp)
+    onItemSelected = { index ->
+        selectedIndex = index
+    },
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 20.dp)
 )
 ```
 
-### State Holder
+---
+
+## 🎨 Customization
+
+AnimatedBottomBar is designed to be flexible.
+
+Example:
 
 ```kotlin
-val state = rememberAnimatedBottomBarState()
-
 AnimatedBottomBar(
     items = items,
-    selectedIndex = state.selectedIndex,
-    onItemSelected = { state.selectedIndex = it }
+    selectedIndex = selectedIndex,
+    onItemSelected = { selectedIndex = it },
+    style = BottomBarDefaults.style(
+        indicatorColor = MaterialTheme.colorScheme.primary,
+        selectedIconColor = MaterialTheme.colorScheme.onPrimary
+    ),
+    animationSpec = BottomBarDefaults.animationSpec(
+        indicatorSpec = spring(
+            dampingRatio = 0.65f
+        )
+    )
 )
 ```
 
 ---
 
-## Customization
+## 🏷 Badges
+
+You can display notification indicators using badges.
+
+### Dot badge
 
 ```kotlin
-style = BottomBarDefaults.style(
-    indicatorColor = MaterialTheme.colorScheme.primary,
-    selectedIconColor = MaterialTheme.colorScheme.onPrimary,
+BottomBarItem(
+    icon = IconSource.Vector(Icons.Outlined.Notifications),
+    label = "Notifications",
+    badge = Badge.Dot
 )
+```
 
-animationSpec = BottomBarDefaults.animationSpec(
-    indicatorSpec = spring(dampingRatio = 0.65f)
+### Count badge
+
+```kotlin
+BottomBarItem(
+    icon = IconSource.Vector(Icons.Outlined.Message),
+    label = "Messages",
+    badge = Badge.Count(5)
 )
 ```
 
 ---
 
-## Accessibility
+## 🎭 Icon Sources
 
-Fully accessible with proper `Role.Tab`, content descriptions, and badge announcements.
+AnimatedBottomBar supports different icon sources:
+
+### Compose Vector Icons
+
+```kotlin
+IconSource.Vector(Icons.Outlined.Home)
+```
+
+### Drawable Resources
+
+```kotlin
+IconSource.DrawableResource(
+    R.drawable.ic_home
+)
+```
+
+This allows using both Material Icons and custom drawable assets.
 
 ---
 
-## Compatibility
+## ♿ Accessibility
 
-- **minSdk**: 24
-- **Kotlin**: 2.4.0
-- **Compose BOM**: 2026.06.01
+AnimatedBottomBar provides Compose semantics support for navigation items, including:
+
+* Tab roles
+* Content descriptions
+* State information for selected items
+* Badge announcements
 
 ---
 
-## License
+## Requirements
 
-Apache License 2.0
+* Android minSdk: 24+
+* Kotlin: 2.4+
+* Jetpack Compose
+
+---
+
+## 📄 License
+
+Licensed under the Apache License 2.0.
+
+See the [LICENSE](LICENSE) file for details.
