@@ -295,8 +295,12 @@ private fun BottomBarItemContent(
 
             Text(
                 text = item.label,
-                color = iconColor,
-                style = MaterialTheme.typography.labelSmall
+                color = when {
+                    !item.enabled -> style.disabledLabelColor
+                    visuallySelected -> style.selectedLabelColor
+                    else -> style.unselectedLabelColor
+                },
+                style = style.labelTextStyle
             )
         }
     }

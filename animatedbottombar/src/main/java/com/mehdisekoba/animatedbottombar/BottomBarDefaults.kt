@@ -56,6 +56,9 @@ public object BottomBarDefaults {
         indicatorHeight: Dp = Dp.Unspecified,
         barHeight: Dp = Dp.Unspecified,
         contentPadding: Dp = Dp.Unspecified,
+        selectedLabelColor: Color = Color.Unspecified,
+        unselectedLabelColor: Color = Color.Unspecified,
+        disabledLabelColor: Color = Color.Unspecified,
         labelTextStyle: TextStyle = TextStyle.Default,
         badgeTextStyle: TextStyle = TextStyle.Default,
     ): BottomBarStyle {
@@ -67,6 +70,13 @@ public object BottomBarDefaults {
             unselectedIconColor = unselectedIconColor.orElse(scheme.primary),
             disabledIconColor = disabledIconColor.orElse(
                 scheme.onSurfaceVariant.copy(alpha = 0.38f),
+            ),
+            selectedLabelColor = selectedLabelColor.orElse(scheme.primary),
+            unselectedLabelColor = unselectedLabelColor.orElse(
+                scheme.onSurfaceVariant.copy(alpha = 0.6f)
+            ),
+            disabledLabelColor = disabledLabelColor.orElse(
+                scheme.onSurfaceVariant.copy(alpha = 0.38f)
             ),
             badgeColor = badgeColor.orElse(scheme.error),
             badgeContentColor = badgeContentColor.orElse(scheme.onError),
